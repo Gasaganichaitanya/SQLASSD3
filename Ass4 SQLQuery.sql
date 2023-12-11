@@ -15,9 +15,9 @@ insert into Products values(4,6,30000,0.3,'12/12/2021')
 insert into Products values(5,9,55000,0.20,'02/07/2019')
 select * from Products
 
-create function Discountedvalue()
+alter function Discountedvalue()
 returns table
 As
-return (select PId,PQ,PPrice,DiscountPercent,ManufacturingDate,PPrice*PQ*DiscountPercent as 'Discounted Value' from Products)
+return (select PId,PQ,PPrice,PPrice*PQ*DiscountPercent as 'Discounted Price',(PPrice*PQ)-(PPrice*PQ*DiscountPercent) as 'After Discount Product Price' from Products)
 
 select * from Discountedvalue()
